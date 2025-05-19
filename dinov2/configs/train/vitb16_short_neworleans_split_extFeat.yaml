@@ -1,0 +1,8 @@
+# this corresponds to the default config
+train:
+  dataset_path: PITDataset:root=/mnt/E/vgg_feat256_agg/
+  split_dir: '/mnt/E/jingwei/neworleans_splits.csv'
+  batch_size_per_gpu: 120
+student:
+  arch: vit_small
+  block_chunks: 0

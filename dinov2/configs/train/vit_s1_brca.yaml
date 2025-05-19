@@ -1,0 +1,11 @@
+# this corresponds to the default config
+train:
+  dataset_path: BRCA:root=/home/Paris/jingwei/tcga_brca/UNI_feat_3scale_agg/
+  split_dir: '/home/Paris/jingwei/tcga_brca/tcga_brca_subtype.csv'
+  batch_size_per_gpu: 16
+  patch_num: 273
+student:
+  arch: vit_small
+  block_chunks: 4
+  patch_num: 273
+

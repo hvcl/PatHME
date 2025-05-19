@@ -1,0 +1,11 @@
+# this corresponds to the default config
+train:
+  dataset_path: THCA_kd:root=/home/Daejeon/dataset/features/tcga_thca/prov_gigapath/s1_patchToken_regional/
+  split_dir: '/home/Daejeon/jingwei/tcga_thca/tcga_thca_progression.csv'
+  batch_size_per_gpu: 1
+  patch_num: 256
+student:
+  arch: vit_small
+  block_chunks: 4
+  patch_num: 256
+

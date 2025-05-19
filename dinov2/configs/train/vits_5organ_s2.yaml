@@ -1,0 +1,12 @@
+# this corresponds to the default config
+train:
+  dataset_path: PITDataset_s2:root=/home/Daejeon/jingwei/newor_subset/
+  split_dir: '/home/Daejeon/jingwei/neworleans_splits.csv'
+  batch_size_per_gpu: 128
+  patch_num: 64
+student:
+  arch: vit_small
+  block_chunks: 4
+  patch_num: 64
+
+
