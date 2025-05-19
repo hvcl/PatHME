@@ -1,1 +1,166 @@
+# Copyright (c) Meta Platforms, Inc. and affiliates.
+#
+# This source code is licensed under the Apache License, Version 2.0
+# found in the LICENSE file in the root directory of this source tree.
 
+import logging
+
+from . import vision_transformer as vits
+
+from . import vision_transformer_s2 as vits_s2
+
+
+from . import vision_transformer_kd as vits_kd
+from . import vision_transformer_kd2 as vits_kd2
+
+from . import vision_transformer_LG as vits_LG
+
+logger = logging.getLogger("dinov2")
+
+
+def build_model(args, only_teacher=False, img_size=224):
+    args.arch = args.arch.removesuffix("_memeff")
+    if "vit" in args.arch:
+        vit_kwargs = dict(
+            img_size=img_size,
+            patch_size=args.patch_size,
+            init_values=args.layerscale,
+            ffn_layer=args.ffn_layer,
+            block_chunks=args.block_chunks,
+            qkv_bias=args.qkv_bias,
+            proj_bias=args.proj_bias,
+            ffn_bias=args.ffn_bias,
+            num_register_tokens=args.num_register_tokens,
+            interpolate_offset=args.interpolate_offset,
+            interpolate_antialias=args.interpolate_antialias,
+        )
+        teacher = vits.__dict__[args.arch](**vit_kwargs)
+        if only_teacher:
+            return teacher, teacher.embed_dim
+        student = vits.__dict__[args.arch](
+            **vit_kwargs,
+            drop_path_rate=args.drop_path_rate,
+            drop_path_uniform=args.drop_path_uniform,
+        )
+        embed_dim = student.embed_dim
+    return student, teacher, embed_dim
+
+
+def build_model_from_cfg(cfg, only_teacher=False):
+    return build_model(cfg.student, only_teacher=only_teacher, img_size=cfg.crops.global_crops_size)
+
+
+
+
+def build_model_s2(args, only_teacher=False, img_size=224):
+    args.arch = args.arch.removesuffix("_memeff")
+    if "vit" in args.arch:
+        vit_kwargs = dict(
+            img_size=img_size,
+            patch_size=args.patch_size,
+            patchNum = args.patch_num,
+            init_values=args.layerscale,
+            ffn_layer=args.ffn_layer,
+            block_chunks=args.block_chunks,
+            qkv_bias=args.qkv_bias,
+            proj_bias=args.proj_bias,
+            ffn_bias=args.ffn_bias,
+            num_register_tokens=args.num_register_tokens,
+            interpolate_offset=args.interpolate_offset,
+            interpolate_antialias=args.interpolate_antialias,
+        )
+        teacher = vits_s2.__dict__[args.arch](**vit_kwargs)
+        if only_teacher:
+            return teacher, teacher.embed_dim
+        student = vits_s2.__dict__[args.arch](
+            **vit_kwargs,
+            drop_path_rate=args.drop_path_rate,
+            drop_path_uniform=args.drop_path_uniform,
+        )
+        embed_dim = student.embed_dim
+    return student, teacher, embed_dim
+
+
+def build_model_from_cfg_s2(cfg, only_teacher=False):
+    return build_model_s2(cfg.student, only_teacher=only_teacher, img_size=cfg.crops.global_crops_size)
+
+
+
+
+
+def build_model_kd(args,cfg, only_teacher=False, img_size=224):
+    args.arch = args.arch.removesuffix("_memeff")
+    if "vit" in args.arch:
+        vit_kwargs = dict(
+            img_size=img_size,
+            patch_size=args.patch_size,
+            hmsa = cfg.hmsa.loss_weight,
+            input_embed_dim=1536,
+            output_embed_dim=512,
+            init_values=args.layerscale,
+            ffn_layer=args.ffn_layer,
+            block_chunks=args.block_chunks,
+            qkv_bias=args.qkv_bias,
+            proj_bias=args.proj_bias,
+            ffn_bias=args.ffn_bias,
+            num_register_tokens=args.num_register_tokens,
+            interpolate_offset=args.interpolate_offset,
+            interpolate_antialias=args.interpolate_antialias,
+        )
+        print ('Buiding teacher')
+        teacher = vits_kd.__dict__[args.arch](patch_num=args.patch_num,**vit_kwargs)
+        if only_teacher:
+            return teacher, teacher.embed_dim
+        print ('Buiding student')
+        student = vits_kd.__dict__[args.arch](
+            **vit_kwargs,
+            patch_num=args.patch_num,
+            drop_path_rate=args.drop_path_rate,
+            drop_path_uniform=args.drop_path_uniform,
+        )
+        embed_dim = student.embed_dim
+    return student, teacher, embed_dim
+
+
+def build_model_from_cfg_kd(cfg, only_teacher=False):
+    return build_model_kd(cfg.student,cfg, only_teacher=only_teacher, img_size=cfg.crops.global_crops_size)
+
+
+
+
+def build_model_LG(args, cfg, only_teacher=False, img_size=224):
+    args.arch = args.arch.removesuffix("_memeff")
+    if "vit" in args.arch:
+        vit_kwargs = dict(
+            img_size=img_size,
+            patch_size=args.patch_size,
+            do_hmsa = cfg.hmsa.loss_weight,
+            input_embed_dim=1536,
+            output_embed_dim=1024,
+            init_values=args.layerscale,
+            ffn_layer=args.ffn_layer,
+            block_chunks=args.block_chunks,
+            qkv_bias=args.qkv_bias,
+            proj_bias=args.proj_bias,
+            ffn_bias=args.ffn_bias,
+            num_register_tokens=args.num_register_tokens,
+            interpolate_offset=args.interpolate_offset,
+            interpolate_antialias=args.interpolate_antialias,
+        )
+        print ('Buiding teacher')
+        teacher = vits_LG.__dict__[args.arch](patch_num=256,**vit_kwargs)
+        if only_teacher:
+            return teacher, teacher.embed_dim
+        print ('Buiding student')
+        student = vits_LG.__dict__[args.arch](
+            **vit_kwargs,
+            patch_num=256,
+            drop_path_rate=args.drop_path_rate,
+            drop_path_uniform=args.drop_path_uniform,
+        )
+        embed_dim = student.embed_dim
+    return student, teacher, embed_dim
+
+
+def build_model_from_cfg_LG(cfg, only_teacher=False):
+    return build_model_LG(cfg.student, cfg,only_teacher=only_teacher, img_size=cfg.crops.global_crops_size)
