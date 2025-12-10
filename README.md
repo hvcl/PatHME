@@ -1,5 +1,5 @@
 
 
 <p align="center">
-  <img src="overview.tif" width="600">
+  <img src="overview.jpeg" width="600">
 </p>
