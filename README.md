@@ -1,2 +1,2 @@
 
-![Figure](PatHME Full Architecture.pdf)
+![Figure](overview.tif)
