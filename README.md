@@ -1,5 +1,4 @@
-# PatHME: Hierarchical Multi-Expert Knowledge Distillation for Whole Slide Image Analysis
-[Paper](https://ieeexplore.ieee.org/document/11164664)
+# PatHME: Hierarchical Multi-Expert Knowledge Distillation for Whole Slide Image Analysis [Paper](https://ieeexplore.ieee.org/document/11164664)
 
 <p align="center">
   <img src="overview.jpeg" width="1000">
