@@ -1,1 +1,2 @@
- [Click to view figure (PDF)](figure.pdf)
+
+![Figure](PatHME Full Architecture.pdf)
