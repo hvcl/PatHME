@@ -1,7 +1,7 @@
 # PatHME: Hierarchical Multi-Expert Knowledge Distillation for Whole Slide Image Analysis
 
 <p align="center">
-  <img src="overview.jpeg" width="600">
+  <img src="overview.jpeg" width="1000">
 </p>
 
 
