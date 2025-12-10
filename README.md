@@ -9,10 +9,8 @@
 # Preprocessing
 1. Download the raw WSI data.
 2. Extract patch feature for multiple magnification (e.g: 5x and 20x).
-
- python patchfeature_extraction.py
-
-   
+```bash
+ python patchfeature_extraction.py  
 4. Concatenate the multiscale patches from the same region to from the regional features (based on 1.25x).
 
 
