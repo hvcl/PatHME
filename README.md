@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --master_port 20510 
 
 # Feature Extraction from PatHME
 ```python
-CUDA_VISIBLE_DEVICES=0 python
+CUDA_VISIBLE_DEVICES=0 python feature_extraction_PatHME.py
 ```
 
 # MIL
