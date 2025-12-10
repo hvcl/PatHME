@@ -29,7 +29,7 @@ CUDA_VISIBLE_DEVICES=0 python
 ```
 
 # MIL
-  Slide classification with attention-based MIL. Please refer to the example label file (). The task nema must be same as the label column name in the label csv file.  
+  Slide classification with attention-based MIL. Please refer to the example label csv file (example_label_file.csv). The task nema must be same as the label column name in the label csv file.  
 ```python
 CUDA_VISIBLE_DEVICES=2 python bag_classification_PIT.py --main_dir /mnt/CC/PIT/ --dataset CHOP --bag_folder pathme_chop_idea3_recon_mse_msfeat_ep63999 --feat_dim 1024 --num_epochs 400 --lr 1e-2 --dr 1e-4 --task diagnosis
 ```
