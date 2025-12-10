@@ -14,7 +14,7 @@
 ```
 3. Concatenate the multiscale patches from the same region to from the regional features (based on 1.25x).
 ```python
- python regional_feat_generation.py --task agg_slide_feat/agg_pat_feat --main_dir patch_feature_saving_directory --folder patch_feature_saving_folderName
+ python regional_feat_generation.py --task [agg_slide_feat/agg_pat_feat] --main_dir patch_feature_saving_directory --folder patch_feature_saving_folderName
 ```
 
 # Training PatHME 
@@ -31,6 +31,6 @@ CUDA_VISIBLE_DEVICES=0 python
 # MIL
   Slide classification with attention-based MIL. Please refer to the example label csv file (example_label_file.csv). The task nema must be same as the label column name in the label csv file.  
 ```python
-CUDA_VISIBLE_DEVICES=2 python bag_classification_PIT.py --main_dir /mnt/CC/PIT/ --dataset CHOP --bag_folder pathme_chop_idea3_recon_mse_msfeat_ep63999 --feat_dim 1024 --num_epochs 400 --lr 1e-2 --dr 1e-4 --task diagnosis
+CUDA_VISIBLE_DEVICES=0 python bag_classification.py --main_dir [/xxxx/xxx/] --dataset [tcga_brca/tcga_stad/tcga_thca] --bag_folder [folderName:gigapath/uni/virchow2/others] --feat_dim 1280 --num_epochs 200 --lr 1e-3 --dr 1e-4 --task [survival/subtype/others] 
 ```
 
