@@ -25,7 +25,7 @@ CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --master_port 20510 
 
 # Feature Extraction from PatHME
 ```python
-CUDA_VISIBLE_DEVICES=0 python feature_extraction_PatHME.py
+CUDA_VISIBLE_DEVICES=1 python feature_extraction_PatHME.py --main_dir [directory of PatHME] --dataset [tcga_brca/tcga_stad/tcga_thca] --ckpt [checkpoint folder] --regFeat_dir [directory for regional feature] --iter [eg:1999]
 ```
 
 # MIL
