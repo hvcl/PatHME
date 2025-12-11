@@ -18,7 +18,7 @@
 ```
 
 # Training PatHME 
-Must use at least 2 gpus and above. 
+It is based on DINOv2. Must use at least 2 gpus and above. 
 ```python
 CUDA_VISIBLE_DEVICES=0,1 python -m torch.distributed.launch --master_port 20510 --nproc_per_node=2 dinov2/train/train_LG.py --config-file dinov2/configs/train/kd_brca.yaml --output_dir dinov2/ckpt/pathme_test
 ```
