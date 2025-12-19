@@ -34,7 +34,7 @@ CUDA_VISIBLE_DEVICES=1 python feature_extraction_PatHME.py --main_dir [directory
 ```
 
 ## MIL
-  Slide classification with attention-based MIL. Please refer to the example label csv file (example_label_file.csv). The task must be same as the label column name in the label csv file.  
+  Slide classification with attention-based MIL. Please refer to the [example label csv file](example/example_label_file.csv). The task must be same as the label column name in the label csv file.  
 ```python
 CUDA_VISIBLE_DEVICES=0 python slide_classification_abmil.py --main_dir [/xxxx/xxx/] --dataset [tcga_brca/tcga_stad/tcga_thca] --bag_folder [folderName:gigapath/uni/virchow2/others] --feat_dim 1280 --num_epochs 200 --lr 1e-3 --dr 1e-4 --task [survival/subtype/others] 
 ```
