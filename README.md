@@ -39,3 +39,7 @@ CUDA_VISIBLE_DEVICES=1 python feature_extraction_PatHME.py --main_dir [directory
 CUDA_VISIBLE_DEVICES=0 python slide_classification_abmil.py --main_dir [/xxxx/xxx/] --dataset [tcga_brca/tcga_stad/tcga_thca] --bag_folder [folderName:gigapath/uni/virchow2/others] --feat_dim 1280 --num_epochs 200 --lr 1e-3 --dr 1e-4 --task [survival/subtype/others] 
 ```
 
+## Citation
+### Please cite us if you use our work. 
+
+Tan, Jing Wei, Gangsu Kim, and Won-Ki Jeong. "PatHME: Hierarchical Multi-Expert Knowledge Distillation for Whole Slide Image Analysis." IEEE Access (2025).
